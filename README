@@ -19,7 +19,7 @@ ruby2app also requires a configuration file in the source directory of your appl
 	 RUBY=prefix of Ruby installation to wrap, i.e. /usr/local
 	 APPNAME=app name
 	 PLIST=name of application property list file, i.e. Info.plist
-	 TK=does the applicaiton bundle the Tcl/Tk frameworks, true/false
+	 TK=does the application bundle the Tcl/Tk frameworks, true/false
 	 ICON=name of application icon file, i.e. "app.icns"
 	 
 With the config file and "main.rb" in place, run "ruby2app" in the source directory, and ruby2app will take care of the rest. The result will be a standalone application that does not require Ruby to be installed on the Mac system it is deployed to. 
