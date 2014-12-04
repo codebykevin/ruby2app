@@ -1,0 +1,10 @@
+To install: 
+
+sudo make install
+
+
+To remove:
+
+sudo make clean
+
+

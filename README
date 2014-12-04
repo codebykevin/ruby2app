@@ -1,0 +1,43 @@
+NAME
+
+ruby2app - bundle Ruby scripts as standalone Mac application
+
+SYNOPSIS
+
+ruby2app [-h]
+
+DESCRIPTION
+
+ruby2app is a simple command-line tool, inspired by similar Mac tools like py2app for Python, that bundles a Ruby script with the Ruby runtime into a standalone Mac application. It reads a basic configuration file to find the appropriate Ruby installation, compiles a small C program that embeds the Ruby interpreter, copies the entire Ruby installation into the application bundle, and re-links the relevant libraries with the main executable.  
+
+USAGE
+
+ruby2app looks for a Ruby script called "main.rb" to wrap. If a file by that name is not found, the build will fail. 
+
+ruby2app also requires a configuration file in the source directory of your application called "appconfig.cfg." The configuration file must specifies the following keys:
+	
+	 RUBY=prefix of Ruby installation to wrap, i.e. /usr/local
+	 APPNAME=app name
+	 PLIST=name of application property list file, i.e. Info.plist
+	 TK=does the applicaiton bundle the Tcl/Tk frameworks, true/false
+	 ICON=name of application icon file, i.e. "app.icns"
+	 
+With the config file and "main.rb" in place, run "ruby2app" in the source directory, and ruby2app will take care of the rest. The result will be a standalone application that does not require Ruby to be installed on the Mac system it is deployed to. 
+
+If you want to see this user message for ruby2app, run "ruby2app -h".
+
+ruby2app requires Ruby to be compiled with the "--enable-load-relative" flag. If Ruby is compiled without this flag, it will search a hard-coded path for its libraries and will not run in an application bundle. ruby2app's build will fail if it does not find the "--enable-load-relative" flag.
+
+TODO
+
+At present ruby2app does not support the inclusion of external libraries in the application bundle except for the Mac-native Tcl/Tk frameworks; this reflects the fact that no other UI toolkit on the Mac is really viable with Ruby. Patches to support additional UI toolkits are welcome.
+
+There are no current plans to implement ruby2app as a gem, or to rewrite it in Ruby. Bash is more than sufficient for this application's tasks, which mostly focus on driving other system tools such as clang, otool, install_name_tool, and cp. 
+
+SEE ALSO
+
+ruby(1), install_name_tool(1), otool(1), clang(1), cp(1)
+
+AUTHOR
+
+Kevin Walzer, WordTech Communications LLC (kw@codebykevin.com)
